@@ -2,10 +2,11 @@
 // the array of dependencies should be defined and empty.
 var app = angular.module('contactlistApp', []);
 
-app.controller('contactlistController', function ($scope) {
-  $scope.contacts = [
-    {'name': 'Nexus S',
-     'email': 'Fast just got faster with Nexus S.',
-     'phone': '111-111-1111'}
-  ];
+app.controller('contactlistController', function ($scope, $http) {
+
+	$http.get('/contactlist').success(function(response) {
+		console.log("I got the data I requested");
+		$scope.persons = response; 
+	});
+
 });
